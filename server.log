@@ -1,0 +1,14 @@
+
+> tmp-app@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 618ms
+
+○ Compiling / ...
+ GET / 200 in 6.6s (next.js: 5.8s, application-code: 754ms)
+ GET /profile 200 in 1031ms (next.js: 629ms, application-code: 402ms)
+ GET /library/content 200 in 729ms (next.js: 546ms, application-code: 183ms)
+ GET /admin 200 in 836ms (next.js: 561ms, application-code: 275ms)
