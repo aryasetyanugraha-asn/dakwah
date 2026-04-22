@@ -1,52 +1,13 @@
 
 import { Link } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
 
 export default function ScholarProfile() {
   return (
     <div className="bg-background text-on-background min-h-screen flex flex-col md:flex-row">
       {/* SideNavBar */}
-      <nav className="hidden lg:flex flex-col h-screen p-4 space-y-6 bg-white dark:bg-emerald-950 text-emerald-900 dark:text-emerald-50 docked fixed left-0 top-0 w-64 border-r border-r border-emerald-100 dark:border-emerald-900 shadow-none z-40">
-        <div className="flex items-center gap-3 px-4 py-2">
-          <span className="text-xl font-serif font-bold text-emerald-900 dark:text-emerald-50 font-display-lg text-display-lg">Al-Maktabah</span>
-        </div>
-        <div className="text-sm px-4 pb-4 border-b border-emerald-100 font-label-md text-label-md opacity-70">The Scholarly Feed</div>
-        <div className="flex-grow space-y-2 pt-4">
-          <Link className="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/10 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-200 scale-100 active:scale-95 transition-transform font-label-md text-label-md" to="/feed">
-            <span className="material-symbols-outlined">auto_stories</span>
-            Home Feed
-          </Link>
-          <a className="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/10 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-200 scale-100 active:scale-95 transition-transform font-label-md text-label-md" href="#">
-            <span className="material-symbols-outlined">menu_book</span>
-            The Library
-          </a>
-          <Link className="flex items-center gap-3 px-4 py-3 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-900 dark:text-emerald-400 rounded-lg border-l-4 border-emerald-900 dark:border-emerald-400 font-label-md text-label-md" to="/scholar">
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>
-            Verified Scholars
-          </Link>
-          <a className="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/10 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-200 scale-100 active:scale-95 transition-transform font-label-md text-label-md" href="#">
-            <span className="material-symbols-outlined">bookmarks</span>
-            Reading List
-          </a>
-          <a className="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/10 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-200 scale-100 active:scale-95 transition-transform font-label-md text-label-md" href="#">
-            <span className="material-symbols-outlined">groups</span>
-            Study Groups
-          </a>
-        </div>
-        <div className="pt-4 border-t border-emerald-100 space-y-2">
-          <button className="w-full bg-primary text-on-primary py-3 rounded-lg font-label-md text-label-md font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
-            <span className="material-symbols-outlined text-[18px]">add</span>
-            Contribute Knowledge
-          </button>
-          <Link className="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/10 rounded-lg font-label-md text-label-md" to="/admin">
-            <span className="material-symbols-outlined text-[20px]">settings</span>
-            Settings
-          </Link>
-          <a className="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/10 rounded-lg font-label-md text-label-md" href="#">
-            <span className="material-symbols-outlined text-[20px]">help</span>
-            Support
-          </a>
-        </div>
-      </nav>
+      <Sidebar />
+
       {/* TopAppBar for Mobile */}
       <header className="lg:hidden bg-white/90 dark:bg-emerald-950/90 backdrop-blur-md docked full-width top-0 sticky z-50 border-b border-emerald-100 dark:border-emerald-900 shadow-sm flex justify-between items-center w-full px-8 py-4">
         <span className="text-2xl font-serif font-black tracking-tight text-emerald-900 dark:text-emerald-50 font-display-lg text-display-lg">Al-Maktabah</span>
