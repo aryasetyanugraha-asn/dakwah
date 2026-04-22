@@ -1,68 +1,12 @@
 
-import { Link } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
 
 export default function ContentDetail() {
   return (
     <div className="bg-background text-on-surface antialiased min-h-screen flex selection:bg-primary-fixed selection:text-on-primary-fixed">
       {/* JSON Component: SideNavBar */}
-      <aside className="bg-white dark:bg-emerald-950 text-emerald-900 dark:text-emerald-50 docked fixed left-0 top-0 h-full w-64 border-r border-r border-emerald-100 dark:border-emerald-900 shadow-none hidden lg:flex flex-col p-4 space-y-6 z-40">
-        {/* Header */}
-        <div className="flex items-center gap-3 px-4 py-2">
-          <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container overflow-hidden">
-            <img alt="Organization Logo" className="w-full h-full object-cover" data-alt="Minimalist abstract geometric logo in shades of deep green and gold on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBkMVgeL8N36X-7nyIlbNJDgHPBGIUwFJb8PaHE8X9DBjn4brSGuk_efRzzxRArOf-vDILFOrE0wAKv879hH14SEydrE0nXWgSn7Wl-12--KNF8K0nZvGAhTNRFGd2LwiMM_MykQF0_Vdb_Siq9zDYjWeou1OYeJFWoHq7OIEl4XKWRCfsODaX1jX-Q4eAKP0Ah8nfup9-PT364hnca98_yqyoOFa1bMeMJ_wlPP5eNA3oqz7lHTKnCCjXacLvMnuFwN7V7WxFF20" />
-          </div>
-          <div>
-            <h1 className="text-xl font-serif font-bold text-emerald-900 dark:text-emerald-50 leading-tight">Al-Maktabah</h1>
-            <p className="font-label-sm text-label-sm text-slate-500">The Scholarly Feed</p>
-          </div>
-        </div>
-        {/* Main Nav */}
-        <nav className="flex-1 space-y-1 mt-6">
-          {/* Inactive */}
-          <Link className="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/10 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-200 scale-100 active:scale-95 transition-transform group" to="/feed">
-            <span className="material-symbols-outlined text-slate-400 group-hover:text-emerald-700 transition-colors">auto_stories</span>
-            <span className="font-label-md text-label-md">Home Feed</span>
-          </Link>
-          {/* Active (Content Detail context maps best to Library/Archive) */}
-          <a className="flex items-center gap-3 px-4 py-3 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-900 dark:text-emerald-400 rounded-lg border-l-4 border-emerald-900 dark:border-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-200 scale-100 active:scale-95 transition-transform" href="#">
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>menu_book</span>
-            <span className="font-label-md text-label-md font-bold">The Library</span>
-          </a>
-          {/* Inactive */}
-          <Link className="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/10 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-200 scale-100 active:scale-95 transition-transform group" to="/scholar">
-            <span className="material-symbols-outlined text-slate-400 group-hover:text-emerald-700 transition-colors">verified</span>
-            <span className="font-label-md text-label-md">Verified Scholars</span>
-          </Link>
-          {/* Inactive */}
-          <a className="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/10 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-200 scale-100 active:scale-95 transition-transform group" href="#">
-            <span className="material-symbols-outlined text-slate-400 group-hover:text-emerald-700 transition-colors">bookmarks</span>
-            <span className="font-label-md text-label-md">Reading List</span>
-          </a>
-          {/* Inactive */}
-          <a className="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/10 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-200 scale-100 active:scale-95 transition-transform group" href="#">
-            <span className="material-symbols-outlined text-slate-400 group-hover:text-emerald-700 transition-colors">groups</span>
-            <span className="font-label-md text-label-md">Study Groups</span>
-          </a>
-        </nav>
-        {/* CTA */}
-        <div className="px-4 py-2">
-          <button className="w-full py-3 px-4 bg-primary text-on-primary rounded-lg font-label-md text-label-md shadow-[0_4px_20px_rgba(0,53,39,0.1)] hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 scale-100 active:scale-95 transition-transform">
-            <span className="material-symbols-outlined text-sm">edit_document</span>
-            Contribute Knowledge
-          </button>
-        </div>
-        {/* Footer Nav */}
-        <div className="pt-4 border-t border-emerald-100 dark:border-emerald-900 space-y-1">
-          <Link className="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/10 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-200 scale-100 active:scale-95 transition-transform group" to="/admin">
-            <span className="material-symbols-outlined text-slate-400 group-hover:text-emerald-700 transition-colors text-xl">settings</span>
-            <span className="font-label-sm text-label-sm">Settings</span>
-          </Link>
-          <a className="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/10 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-200 scale-100 active:scale-95 transition-transform group" href="#">
-            <span className="material-symbols-outlined text-slate-400 group-hover:text-emerald-700 transition-colors text-xl">help</span>
-            <span className="font-label-sm text-label-sm">Support</span>
-          </a>
-        </div>
-      </aside>
+      <Sidebar />
+
       {/* Main Content Wrapper */}
       <div className="flex-1 flex flex-col min-w-0 lg:ml-64 bg-background">
         {/* JSON Component: TopAppBar */}
