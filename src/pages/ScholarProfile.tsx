@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
+import { motion } from 'framer-motion';
 
 import type { User, Content } from '../types';
 import { getUsers, getContents } from '../services/firestore';
@@ -50,7 +51,12 @@ export function ScholarProfile() {
   }
 
   return (
-    <div className="min-h-screen bg-surface dark:bg-emerald-950 flex flex-col md:flex-row">
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -15 }}
+      transition={{ duration: 0.3 }}
+      className="min-h-screen bg-surface dark:bg-emerald-950 flex flex-col md:flex-row">
       <Sidebar />
       {/* Main Content Area */}
       <main className="flex-1 max-w-5xl mx-auto w-full relative pb-0 flex flex-col min-h-screen">
@@ -203,6 +209,6 @@ export function ScholarProfile() {
         </div>
         <footer className="mt-auto bg-slate-50 dark:bg-emerald-950/50 border-t border-slate-200 dark:border-emerald-900 full-width py-12 flat no shadows"><div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-6"><span className="font-sans text-xs uppercase tracking-widest text-slate-600 dark:text-slate-400">© 2024 Al-Maktabah. Preserving the Sacred Tradition.</span><div className="flex gap-6"><a className="font-sans text-xs uppercase tracking-widest text-slate-500 dark:text-slate-500 hover:text-emerald-800 dark:hover:text-emerald-200 underline decoration-emerald-200 transition-all opacity-100 hover:opacity-80" href="#">Archives</a><a className="font-sans text-xs uppercase tracking-widest text-slate-500 dark:text-slate-500 hover:text-emerald-800 dark:hover:text-emerald-200 underline decoration-emerald-200 transition-all opacity-100 hover:opacity-80" href="#">Scholarly Ethics</a><a className="font-sans text-xs uppercase tracking-widest text-slate-500 dark:text-slate-500 hover:text-emerald-800 dark:hover:text-emerald-200 underline decoration-emerald-200 transition-all opacity-100 hover:opacity-80" href="#">Open Access</a><a className="font-sans text-xs uppercase tracking-widest text-slate-500 dark:text-slate-500 hover:text-emerald-800 dark:hover:text-emerald-200 underline decoration-emerald-200 transition-all opacity-100 hover:opacity-80" href="#">Contact</a></div></div></footer>
       </main>
-    </div>
+    </motion.div>
   );
 }

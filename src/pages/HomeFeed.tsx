@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Sidebar from '../components/Sidebar';
+import { motion } from 'framer-motion';
 import type { User, Content } from '../types';
 import { getUsers, getContents } from '../services/firestore';
 
@@ -33,7 +34,12 @@ export function HomeFeed() {
   };
 
   return (
-    <div className="min-h-screen bg-surface dark:bg-emerald-950 flex flex-col md:flex-row">
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -15 }}
+      transition={{ duration: 0.3 }}
+      className="min-h-screen bg-surface dark:bg-emerald-950 flex flex-col md:flex-row">
       <Sidebar />
       {/* Main Content Area */}
       <main className="flex-1 max-w-3xl mx-auto w-full px-4 sm:px-8 py-8 sm:py-12">
@@ -208,6 +214,6 @@ export function HomeFeed() {
           )}
         </div>
       </main>
-    </div>
+    </motion.div>
   );
 }

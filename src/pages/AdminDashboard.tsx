@@ -1,9 +1,15 @@
+import { motion } from "framer-motion";
 
 import { Link } from 'react-router-dom';
 
 export default function AdminDashboard() {
   return (
-    <div className="bg-background text-on-background font-body-md text-body-md flex h-screen overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -15 }}
+      transition={{ duration: 0.3 }}
+      className="bg-background text-on-background font-body-md text-body-md flex h-screen overflow-hidden">
       {/* SideNavBar */}
       <nav className="bg-white text-emerald-800 font-['Manrope'] text-sm font-medium h-screen w-64 border-r fixed left-0 top-0 border-r border-slate-200 hidden lg:flex flex-col h-full pt-4 pb-8 z-50">
         <div className="px-6 pb-6 mb-2 border-b border-surface-variant">
@@ -295,6 +301,6 @@ export default function AdminDashboard() {
           </div>
         </div>
       </main>
-    </div>
+    </motion.div>
   );
 }
