@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import ScholarProfile from './pages/ScholarProfile';
+import { ScholarProfile } from './pages/ScholarProfile';
 import ContentDetail from './pages/ContentDetail';
-import HomeFeed from './pages/HomeFeed';
+import { HomeFeed } from './pages/HomeFeed';
 import AdminDashboard from './pages/AdminDashboard';
 import './App.css';
 
