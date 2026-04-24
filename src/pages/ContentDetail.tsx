@@ -1,9 +1,45 @@
 
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
+import { Worker, Viewer } from '@react-pdf-viewer/core';
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import { motion } from 'framer-motion';
+
 
 export default function ContentDetail() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const location = useLocation();
+  const contentData = location.state?.content || { type: 'article', pdfUrl: '' };
+  const defaultLayoutPluginInstance = defaultLayoutPlugin();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalScroll = document.documentElement.scrollTop;
+      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scroll = `${totalScroll / windowHeight}`;
+      setScrollProgress(Number(scroll));
+    }
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isPdf = contentData.type === 'ebook' && contentData.pdfUrl;
+
   return (
-    <div className="bg-background text-on-surface antialiased min-h-screen flex selection:bg-primary-fixed selection:text-on-primary-fixed">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+      className="bg-background dark:bg-slate-900 text-on-surface dark:text-slate-100 antialiased min-h-screen flex selection:bg-primary-fixed selection:text-on-primary-fixed"
+    >
+      <div
+        className="fixed top-0 left-0 h-1 bg-primary z-[60] transition-all duration-150 ease-out"
+        style={{ width: `${scrollProgress * 100}%` }}
+      />
       {/* JSON Component: SideNavBar */}
       <Sidebar />
 
@@ -43,13 +79,22 @@ export default function ContentDetail() {
         <main className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-12 py-10 lg:py-16">
           {/* Context / Breadcrumb */}
           <div className="flex items-center gap-2 mb-6">
-            <a className="font-label-sm text-label-sm text-primary uppercase tracking-wider hover:underline underline-offset-4 decoration-primary-fixed" href="#">Theology &amp; Fiqh</a>
-            <span className="material-symbols-outlined text-outline text-sm">chevron_right</span>
-            <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Treatises</span>
+            <a className="font-label-sm text-label-sm text-primary dark:text-emerald-400 uppercase tracking-wider hover:underline underline-offset-4 decoration-primary-fixed" href="#">{contentData.type === 'ebook' ? 'E-Books' : 'Articles'}</a>
+            <span className="material-symbols-outlined text-outline dark:text-slate-500 text-sm">chevron_right</span>
+            <span className="font-label-sm text-label-sm text-on-surface-variant dark:text-slate-400 uppercase tracking-wider">{contentData.type}</span>
           </div>
+
+          {isPdf ? (
+            <div className="h-[80vh] border border-outline-variant/30 rounded-xl overflow-hidden shadow-sm">
+              <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
+                <Viewer fileUrl={contentData.pdfUrl} plugins={[defaultLayoutPluginInstance]} />
+              </Worker>
+            </div>
+          ) : (
+            <>
           {/* Article Header */}
           <header className="mb-10">
-            <h1 className="font-display-lg text-display-lg text-on-surface mb-8 text-balance">The Epistemology of Certainty: A Modern Contextualization of Classical Texts</h1>
+            <h1 className="font-display-lg text-display-lg text-on-surface dark:text-slate-100 mb-8 text-balance">{contentData.title || 'The Epistemology of Certainty'}</h1>
             <div className="flex items-center flex-wrap gap-y-4 gap-x-8 border-y border-outline-variant/30 py-4">
               <div className="flex items-center gap-3">
                 <img alt="Author" className="w-12 h-12 rounded-full object-cover bg-surface-container" data-alt="Close up portrait of an older distinguished academic gentleman in soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVVMd-pZBIglExv1EGWyu0kzHdUiJKwRKBIU_Rqs6fmLP8WyVhoRyydFSmYvNECOs84rJos8BsvVcJJZWLPcghjJfTSioi8yIY3tw3yVCka7sJU0EmiP8FTUpampVM7lmpEX22LaYRSzp19gKaN6kWqlb3pRFhVQia5gKbVhLTpDkwpRaiTQsbHoqmC8gnZEqFa_oRvjaj0ZmjW_SuDH8kcX55uPhFYE2yAU95sCvX4AIf_i14q2ALLpks9vx2r5kVcCbcZSA_szA" />
@@ -83,7 +128,7 @@ export default function ContentDetail() {
             </figcaption>
           </figure>
           {/* Article Content */}
-          <article className="prose prose-lg max-w-none text-on-surface-variant font-body-lg text-body-lg space-y-8">
+          <article className="prose prose-lg max-w-none text-on-surface-variant dark:text-slate-300 font-headline-md text-body-lg space-y-8 leading-loose tracking-wide">
             <p className="first-letter:text-5xl first-letter:font-headline-lg first-letter:text-primary first-letter:mr-1 first-letter:float-left">
               The pursuit of unshakeable foundational knowledge, often termed 'certainty' (yaqin) in the classical tradition, remains one of the most pressing intellectual endeavors of our age. While contemporary paradigms often relegate certainty to the realm of the empirical, the classical scholars established a robust taxonomy that encompassed rational, empirical, and revealed epistemologies.
             </p>
@@ -142,6 +187,8 @@ export default function ContentDetail() {
               </div>
             </div>
           </div>
+            </>
+          )}
           {/* Related Content (Bento Style) */}
           <section className="mt-20">
             <h2 className="font-headline-md text-headline-md text-on-surface mb-8 border-b border-outline-variant/30 pb-4">Further Reading in Theology</h2>
@@ -193,6 +240,6 @@ export default function ContentDetail() {
           </div>
         </footer>
       </div>
-    </div>
+    </motion.div>
   );
 }
