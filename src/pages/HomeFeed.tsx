@@ -3,7 +3,6 @@ import Sidebar from '../components/Sidebar';
 import { motion } from 'framer-motion';
 import type { User, Content } from '../types';
 import { getUsers, getContents } from '../services/firestore';
-import { seedDatabase } from '../utils/seedData';
 
 export function HomeFeed() {
   const [users, setUsers] = useState<User[]>([]);
@@ -54,21 +53,6 @@ export function HomeFeed() {
           </button>
         </header>
         <div className="space-y-8">
-          {/* TEMP SEED DATA BUTTON */}
-          <div className="flex justify-center mb-6">
-            <button
-              onClick={async () => {
-                await seedDatabase();
-                // Optionally reload window or re-fetch data
-                window.location.reload();
-              }}
-              className="bg-error text-on-error hover:bg-error-container hover:text-on-error-container px-6 py-3 rounded-full font-bold shadow-lg transition-colors flex items-center gap-2"
-            >
-              <span className="material-symbols-outlined">database</span>
-              Inject Dummy Data
-            </button>
-          </div>
-
           {/* Feed Filter/Tabs */}
           <div className="flex items-center gap-4 border-b border-outline-variant/30 dark:border-emerald-800/50 pb-4 overflow-x-auto hide-scrollbar">
             <button className="px-4 py-2 font-label-lg text-label-lg text-primary dark:text-emerald-400 border-b-2 border-primary dark:border-emerald-400 whitespace-nowrap">For You</button>
